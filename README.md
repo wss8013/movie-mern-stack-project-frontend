@@ -13,9 +13,11 @@
 ![](readmeSource/editedReview.png)
 
 ## HW 6: MERN Project Part 5 - Favorites
+![](readmeSource/favoritesStars-displayed.png)
+
 ![](readmeSource/favoritesList-database.png)
 
-![](readmeSource/favoritesStars-displayed.png)
+
 
 
 

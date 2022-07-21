@@ -171,7 +171,6 @@ const MoviesList = ({
                                     :
                                     <BsStar className="star starEmpty" onClick={() => {
                                         addFavorite(
-                                            user, 
                                             movie._id);
                                     }}/>
                                 )}

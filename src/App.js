@@ -9,11 +9,13 @@ import { useState, useEffect, useCallback } from 'react';
 import Login from './components/Login';
 import Logout from './components/Logout';
 
-
 import MoviesList from "./components/MoviesList"
 import Movie from "./components/Movie"
 import AddReview from "./components/AddReview"
 import FavoritesDataService from "./services/favorites";
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
+import  FavoriteContainer from './components/Container';
 
 
 import './App.css';
@@ -22,42 +24,45 @@ import { NavbarBrand } from 'react-bootstrap';
 const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
 function App() {
-
-
   const [user, setUser] = useState(null);
   const [favorites, setFavorites] = useState([]);
+  const [doSaveFaves, setDoSaveFaves] = useState(false);
+  const retrieveFavorites = useCallback(() => {
+    FavoritesDataService.getFavoritesByUserId(user.googleId)
+      .then(response => {
+        setFavorites(response.data.favorites);
+      }).catch(e => {
+        console.error(e);
+      });
+  }, [user]);
 
-  //   useEffect((user) => {
-  //     const getFavorite = id => {
-  //         FavoritesDataService.getFavoritesByUserId(id)
-  //             .then(response => {
-  //                 console.log(response.data);
-  //                 setFavorites(response.data);
-  //             }).catch(e => {
-  //                 console.log(e);
-  //             })
-
-  //     }
-  //     getFavorite(user.googleId);
-  // }, [user.googleId]);
-
-  const addFavorite = useCallback((user, movieId) => {
-    setFavorites([...favorites, movieId]);
-    console.log(" add favorite ");
-    console.log(favorites);
-    console.log(movieId);
-    console.log(user);
+  const saveFavorites = useCallback(() => {
     var data = {
       _id: user.googleId,
-      favorites: [...favorites, movieId],
+      favorites: favorites
     }
-    FavoritesDataService.updateFavorites(data);
+    FavoritesDataService.updateFavorites(data).catch(e => {
+      console.error(e);
+    });
+  }, [favorites, user]);
 
-  }, []);
-  // const addFavorite =  useCallback((movieId) => {
-  //   setFavorites([...favorites, movieId])
-  //   console.log(favorites);
-  // });
+  useEffect(() => {
+    if (user && doSaveFaves) {
+      saveFavorites();
+      setDoSaveFaves(false);
+    }
+  }, [user, favorites, saveFavorites, doSaveFaves]);
+
+  useEffect(() => {
+    if (user) {
+      retrieveFavorites();
+    }
+  }, [user, retrieveFavorites]);
+
+  const addFavorite = (movieId) => {
+    setDoSaveFaves(true);
+    setFavorites([...favorites, movieId]);
+  }
 
   const deleteFavorite = (movieId) => {
     setFavorites(favorites.filter(f => f !== movieId));
@@ -80,7 +85,6 @@ function App() {
 
   return (
     <GoogleOAuthProvider clientId={clientId}>
-
       <div className="App">
         <Navbar bg="primary" expand="lg" sticky="top" variant="dark">
           <Container className="container-fluid">
@@ -94,6 +98,14 @@ function App() {
                 <Nav.Link as={Link} to={"/movies"}>
                   Movies
                 </Nav.Link>
+                {user ? (
+                  <Nav.Link as={Link} to={"/favorites"}>
+                    Favorites
+                  </Nav.Link>
+                ) : (
+                  <Nav.Link >
+                  </Nav.Link>
+                )}
               </Nav>
             </Navbar.Collapse>
             {user ? (
@@ -120,6 +132,11 @@ function App() {
               deleteFavorite={deleteFavorite}
               favorites={favorites}
             />}
+          />
+          <Route exact path={"/favorites"} element={
+           <DndProvider backend={HTML5Backend}>
+           <FavoriteContainer />
+         </DndProvider>}
           />
           <Route exact path={"/movies/:id/"} element={
             <Movie user={user} />}
