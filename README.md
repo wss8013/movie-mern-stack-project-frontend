@@ -1,6 +1,7 @@
 # shasha-wang-frontend
+https://movietime-frontend-shashawang.herokuapp.com/
 
-## HW2 MERN Project Part 3 - Implementing the frontend
+## HW4 MERN Project Part 3 - Implementing the frontend
 ![](readmeSource/browserDisplaying.png)
 
 ![](readmeSource/singleMovie-ownPoster.png)
@@ -12,11 +13,13 @@
 
 ![](readmeSource/editedReview.png)
 
+
 ## HW 6: MERN Project Part 5 - Favorites
 ![](readmeSource/favoritesStars-displayed.png)
 
 ![](readmeSource/favoritesList-database.png)
 
+HW 8: MERN Project Part 7 - The Favorites ranking page
 
 
 
