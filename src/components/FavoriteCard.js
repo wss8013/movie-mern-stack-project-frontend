@@ -4,7 +4,12 @@ import { ItemTypes } from './ItemTypes.js'
 import Image from "react-bootstrap/Image";
 import style from "./favorites.css"
 
-export const Card = ({ id, text, index, moveCard }) => {
+const myStyle = {
+    padding: "10px", 
+    marginBottom: "0.5rem",
+     backgroundColor: "white" 
+}
+export const Card = ({ id, movie, index, moveCard }) => {
     const ref = useRef(null)
     const [{ handlerId }, drop] = useDrop({
         accept: ItemTypes.CARD,
@@ -64,18 +69,22 @@ export const Card = ({ id, text, index, moveCard }) => {
     const opacity = isDragging ? 0 : 1
     drag(drop(ref))
     return (
-        <div className="favoritesCard" ref={ref} data-handler-id={handlerId}>
-            <div className="favoritesNumber favoritesNumberOneDigit">{index}</div>
-            <div>
-            <Image
-                className="favoritesPoster"
-                //src='/images/NoPosterAvailable-crop.jpeg'
-                src='https://media.istockphoto.com/photos/soybean-field-picture-id454184549?k=20&m=454184549&s=612x612&w=0&h=XaxA4xOKfZy3nT2z4DYL6oA1zfwc4wV4Z5CyvSKs0F0='
-                 />
+        <div style={{...myStyle, opacity}}>
+            <div className="favoritesCard card" ref={ref} data-handler-id={handlerId}>
+                <div className="favoritesNumber favoritesNumberOneDigit">{index+1}</div>
+                <div>
+                    <Image
+                        className="card-img favoritesPoster"
+                        src={movie.poster + "/100px180"}
+                        onError={(e) => {
+                            e.target.src = '/images/NoPosterAvailable-crop.jpeg'
+                        }}
+                        fluid />
+                </div>
+                <div className="favoritesTitle">
+                    {movie.title}
+                </div>
             </div>
-            <div className="favoritesTitle">
-            {text}
             </div>
-        </div>
     )
 }

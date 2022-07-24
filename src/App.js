@@ -15,7 +15,7 @@ import AddReview from "./components/AddReview"
 import FavoritesDataService from "./services/favorites";
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
-import  FavoriteContainer from './components/Container';
+import FavoriteContainer from './components/Container';
 
 
 import './App.css';
@@ -134,9 +134,13 @@ function App() {
             />}
           />
           <Route exact path={"/favorites"} element={
-           <DndProvider backend={HTML5Backend}>
-           <FavoriteContainer />
-         </DndProvider>}
+            <DndProvider backend={HTML5Backend}>
+              <FavoriteContainer
+                user={user}
+                addFavorite={addFavorite}
+                deleteFavorite={deleteFavorite}
+                favorites={favorites} />
+            </DndProvider>}
           />
           <Route exact path={"/movies/:id/"} element={
             <Movie user={user} />}
