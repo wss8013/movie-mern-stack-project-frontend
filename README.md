@@ -1,7 +1,7 @@
 # shasha-wang-frontend
-https://movietime-frontend-shashawang.herokuapp.com/  <br /> 
-It is a full-stack application using the MERN (MongoDB, Express, React, Node.js). This is the frontend part.  <br /> 
-Due to the school project regulation, I can not post the source code for this project.  <br /> 
+It is a full-stack application using the MERN (MongoDB, Express, React, Node.js). This is the part of frontend.  <br /> 
+Due to the school project regulation, I can not post the source code for this project.  <br />
+For more infomation, please visit: https://movietime-frontend-shashawang.herokuapp.com/  <br /> 
 ## HW4 MERN Project Part 3 - Implementing the frontend
 ![](readmeSource/browserDisplaying.png)
 
