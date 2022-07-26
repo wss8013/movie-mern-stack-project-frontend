@@ -1,6 +1,7 @@
 # shasha-wang-frontend
-https://movietime-frontend-shashawang.herokuapp.com/
-
+https://movietime-frontend-shashawang.herokuapp.com/  <br /> 
+It is a full-stack application using the MERN (MongoDB, Express, React, Node.js) stack. This is the frontend part.  <br /> 
+Due to the school project regulation, I can not post the source code for this project.  <br /> 
 ## HW4 MERN Project Part 3 - Implementing the frontend
 ![](readmeSource/browserDisplaying.png)
 
@@ -9,10 +10,11 @@ https://movietime-frontend-shashawang.herokuapp.com/
 ![](readmeSource/singleMovie-placeholder.png)
 
 ## HW5 MERN Project Part 4 - Authentication
+![](readmeSource/google-oauth.png)
+
 ![](readmeSource/newlyWrittenReview.png)
 
 ![](readmeSource/editedReview.png)
-
 
 ## HW 6: MERN Project Part 5 - Favorites
 ![](readmeSource/favoritesStars-displayed.png)
@@ -20,6 +22,11 @@ https://movietime-frontend-shashawang.herokuapp.com/
 ![](readmeSource/favoritesList-database.png)
 
 HW 8: MERN Project Part 7 - The Favorites ranking page
+![](readmeSource/dragOrder.png)
+
+![](readmeSource/favoriteCollections.png)
+
+
 
 
 
